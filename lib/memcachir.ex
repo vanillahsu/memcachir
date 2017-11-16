@@ -61,6 +61,13 @@ defmodule Memcachir do
   end
 
   @doc """
+  """
+  def version() do
+    nodes = HashRing.Managed.nodes(:memcachir_ring)
+    execute(&Memcache.version/1, nodes)
+  end
+
+  @doc """
   Removes all the items from the server. Returns `{:ok}`.
   """
   def flush(opts \\ []) do
